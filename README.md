@@ -1,3 +1,5 @@
+# friendDemo
+
 #### User Stories
 **1. As a user, I need an API to create a friend connection between two email addresses.**
 * This is a POST request with the following context path (http://localhost:8090/friend/createFriendConnection)
@@ -8,20 +10,38 @@ The API should receive the following JSON request:
 {
   "friends":
     [
-      "Alpha@email.com",
-      "jm@example.com"
+      "a.com",
+      "b.com"
     ]
 }
 ```
 
+```
+The API will return the following response for successful creation
+{
+  "success": true
+}
+```
+
 **2. As a user, I need an API to retrieve the friends list for an email address.**
-* This is a POST request with the following context path (http://localhost:8090/friend/findFriend)
+* This is a POST request with the following context path (http://localhost:8090/friend/list)
 * If there is no friends found. 
-API will response with the following message: "No friendfound."
+API will response with the following message: "No Friend Found"
 ```
 The API should receive the following JSON request:
 {
-  "email": "Alpha@email.com"
+  "friend": "a.com"
+}
+```
+
+```
+The API will return the following response for successful listing:
+{
+    "success": true,
+    "friends": [
+        "b.com"
+    ],
+    "count": 1
 }
 ```
 
@@ -32,10 +52,21 @@ The API should receive the following JSON request:
 {
   "friends":
     [
-      "jm@example.com",
-      "Alpha@email.com"
+      "a.com",
+      "c.com"
     ]
 }
+```
+```
+The API will return the following response if there's a common friend:
+{
+    "success": true,
+    "friends": [
+        "b.com"
+    ],
+    "count": 1
+}
+
 ```
 
 **4. As a user, I need an API to subscribe to updates for an email address.**
@@ -43,19 +74,30 @@ The API should receive the following JSON request:
 ```
 The API should receive the following JSON request:
 {
-  "requestor": "jm@example.com",
-  "target": "Alpha@email.com"
+	"requestor": "x.com",
+	"target": "a.com"
 }
 ```
-
+```
+The API will return the following response:
+{
+    "success": true
+}
+```
 
 **5. As a user, I need an API to block updates for an email address.**
 * This is a POST request with the following context path (http://localhost:8090/friend/block)
 ```
 The API should receive the following JSON request:
 {
-  "requestor": "cy@example.com",
-  "target": "Alpha@email.com"
+	"requestor": "a.com",
+	"target": "z.com"
+}
+```
+```
+The API will return the following response:
+{
+    "success": true
 }
 ```
 
@@ -64,8 +106,19 @@ The API should receive the following JSON request:
 ```
 The API should receive the following JSON request:
 {
-  "sender":  "Alpha@email.com",
-  "text": "Hello World! All my Friends"
+	"sender": "a.com",
+	"text": "hello world t.com"
 }
 ```
-# friendDemo
+```
+The API should receive the following JSON request:
+{
+{
+    "success": true,
+    "recipients": [
+        "b.com",
+        "t.com"
+    ]
+}
+}
+```
