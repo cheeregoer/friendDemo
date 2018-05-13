@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "6b4fb09f-c1c5-492f-95d8-03d94e337fda",
+		"name": "Friend Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/friend/createFriendConnection",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"friends\":[\"abc@sp.com\", \"def@sp.com\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/friend/createFriendConnection",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friend",
+						"createFriendConnection"
+					]
+				},
+				"description": "Create a friend connection, which takes in a Json Array. \n\nExceptions:\n1: If post sends more than 1 friend connection, a status message will show \"Only one connection can be made at a time\"\n2: If friend exist, a status message will show \"Friend connection already exist\""
+			},
+			"response": []
+		},
+		{
+			"name": "/friend/list",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"friend\": \"def@sp.com\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/friend/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friend",
+						"list"
+					]
+				},
+				"description": "taking in a friend object, will return a list of friends in Json Array.\n\n1: If do not have friend, a status message will return \"No Friend Found\""
+			},
+			"response": []
+		},
+		{
+			"name": "/friend/findCommon",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"friends\" : [\"a\",\"c\"]\t\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/friend/findCommon",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friend",
+						"findCommon"
+					]
+				},
+				"description": "Returns a list of common friends between 2 friends."
+			},
+			"response": []
+		},
+		{
+			"name": "/friend/subscribe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"requestor\": \"a\",\n\t\"target\": \"e\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/friend/subscribe",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friend",
+						"subscribe"
+					]
+				},
+				"description": "a requestor is able to subscribe to a target. Upon successful subsciption, success will be return as true"
+			},
+			"response": []
+		},
+		{
+			"name": "/friend/block",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"requestor\": \"a\",\n\t\"target\": \"z\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/friend/block",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friend",
+						"block"
+					]
+				},
+				"description": "a requestor is able to block to a target. Upon successful subsciption, success will be return as true"
+			},
+			"response": []
+		},
+		{
+			"name": "/friend/broadcast",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"sender\": \"a.com\",\n\t\"text\": \"hello world t.com\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/friend/broadcast",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"friend",
+						"broadcast"
+					]
+				},
+				"description": "This endpoints allows a sender, to send a text to users that are\n\n1) Not block from the user\n2) is a friend of the user\n3) has subscribed for updates to the user\n4) has been mentioned in the message\n\nAssumption has been made that the mentioned user has a record in the database as a registered user. Registered user being the user has a email in the friend connection database"
+			},
+			"response": []
+		}
+	]
+}
