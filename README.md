@@ -123,7 +123,7 @@ The API should receive the following JSON request:
 }
 ```
 
-####Docker
+**Docker**
 The latest docker image has been pushed to docker hub. To run the docker image, enter the following command in your docker terminal:
 ```
 docker run -p 8080:8080 cheeregoer/frienddemo
