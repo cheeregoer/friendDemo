@@ -31,7 +31,7 @@ public class FriendController {
 	 * 2) each of them as block connection from each other
 	 */
 	@RequestMapping(value="/createFriendConnection", method = RequestMethod.POST)
-	public JsonResponse createFriendConnection (@Valid @RequestBody JsonRequest jsonRequest) {
+	public JsonResponse createFriendConnection ( @RequestBody JsonRequest jsonRequest) {
 		
 		JsonResponse jsonResponse = new JsonResponse();
 		jsonResponse.setSuccess(false);
@@ -52,7 +52,7 @@ public class FriendController {
 	}
 	
 	@RequestMapping(value="/list", method = RequestMethod.POST)
-	public JsonResponse retrieveFriendsList (@Valid @RequestBody JsonRequest jsonRequest) {
+	public JsonResponse retrieveFriendsList ( @RequestBody JsonRequest jsonRequest) {
 		String friend = jsonRequest.getFriend();
 		List<String> friendList = friendConnectionService.retrieveFriendList(friend);
 		JsonResponse jsonResponse = new JsonResponse();
@@ -71,7 +71,7 @@ public class FriendController {
 	}
 	
 	@RequestMapping(value="/findCommon", method = RequestMethod.POST)
-	public JsonResponse retrieveCommonFriendList(@Valid @RequestBody JsonRequest jsonRequest) {
+	public JsonResponse retrieveCommonFriendList( @RequestBody JsonRequest jsonRequest) {
 		List<String> friendsList = jsonRequest.getFriends();
 		JsonResponse jsonResponse = new JsonResponse();
 		jsonResponse.setSuccess(false);
@@ -86,7 +86,7 @@ public class FriendController {
 	}
 	
 	@RequestMapping(value="/subscribe", method = RequestMethod.POST)
-	public JsonResponse subscribe(@Valid @RequestBody JsonRequest jsonRequest) {
+	public JsonResponse subscribe( @RequestBody JsonRequest jsonRequest) {
 		String requestor = jsonRequest.getRequestor();
 		String target = jsonRequest.getTarget();
 		JsonResponse jsonResponse = new JsonResponse();
@@ -105,7 +105,7 @@ public class FriendController {
 	if they are not connected as friends, then no new friends connection can be added
 	 */
 	@RequestMapping(value="/block", method = RequestMethod.POST)
-	public JsonResponse block(@Valid @RequestBody JsonRequest jsonRequest) {
+	public JsonResponse block( @RequestBody JsonRequest jsonRequest) {
 		String requestor = jsonRequest.getRequestor();
 		String target = jsonRequest.getTarget();
 		
@@ -128,7 +128,7 @@ public class FriendController {
 		has been @mentioned in the update
 	 */
 	@RequestMapping(value="/broadcast",method = RequestMethod.POST)
-	public JsonResponse broadcastEmail(@Valid @RequestBody JsonRequest jsonRequest) {
+	public JsonResponse broadcastEmail( @RequestBody JsonRequest jsonRequest) {
 		String sender = jsonRequest.getSender();
 		String text = jsonRequest.getText();
 		List<String> broadcastList = friendConnectionService.getBroadcastEmailList(sender, text);
