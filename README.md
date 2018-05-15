@@ -47,6 +47,7 @@ The API will return the following response for successful listing:
 
 **3. As a user, I need an API to retrieve the common friends list between two email addresses.**
 * This is a POST request with the following context path (http://localhost:8090/friend/findCommonFriend)
+* If user do not input 2 friends, the  API will response with the following message: "Can only find common friend between 2 friends"
 ```
 The API should receive the following JSON request:
 {

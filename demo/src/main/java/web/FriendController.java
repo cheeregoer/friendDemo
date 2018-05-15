@@ -81,6 +81,10 @@ public class FriendController {
 			jsonResponse.setFriends(commonFriendList);
 			jsonResponse.setCount(commonFriendList.size());
 		}
+		else{
+			jsonResponse.setSuccess(false);
+			jsonResponse.setStatusMessage(messageSource.getMessage("friend.no.common", null, null));
+		}
 		
 		return jsonResponse;
 	}
