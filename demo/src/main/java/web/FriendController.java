@@ -77,13 +77,17 @@ public class FriendController {
 		jsonResponse.setSuccess(false);
 		if(friendsList.size()==2) {
 			List<String> commonFriendList = friendConnectionService.retrieveCommonFriendList(friendsList.get(0), friendsList.get(1));
+			if(commonFriendList.isEmpty()){
+				jsonResponse.setStatusMessage(messageSource.getMessage("friend.no.common", null, null));
+				return jsonResponse;
+			}
 			jsonResponse.setSuccess(true);
 			jsonResponse.setFriends(commonFriendList);
 			jsonResponse.setCount(commonFriendList.size());
 		}
 		else{
 			jsonResponse.setSuccess(false);
-			jsonResponse.setStatusMessage(messageSource.getMessage("friend.no.common", null, null));
+			jsonResponse.setStatusMessage(messageSource.getMessage("friend.invalid.request.commonfriend", null, null));
 		}
 		
 		return jsonResponse;
